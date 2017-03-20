@@ -1,12 +1,14 @@
 package com.jikim.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.jikim.Service.CalculatorService;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/math")
+
 public class CalculatorController {
 
     @GetMapping("/pi")
@@ -21,25 +23,33 @@ public class CalculatorController {
             @RequestParam int y){
         String operator = "";
         int evaluated = 0;
+        CalculatorService calculatorService = new CalculatorService();
+
         switch (operation) {
             case "add":
                 operator = "+";
-                evaluated = x + y;
+                evaluated = calculatorService.add(x,y);
                 break;
             case "subtract":
                 operator = "-";
-                evaluated = x - y;
+                evaluated = calculatorService.subtract(x,y);
                 break;
             case "multiply":
                 operator = "*";
-                evaluated = x * y;
+                evaluated = calculatorService.multiply(x,y);
                 break;
             case "divide":
                 operator = "/";
-                evaluated = x / y;
+                evaluated = calculatorService.divide(x,y);
                 break;
         }
         return String.format("%d %s %d = %d", x, operator, y, evaluated);
     }
 
+    @PostMapping("/sum")
+    public String findAsHashMap(@RequestParam MultiValueMap querystring){
+        String qString = "";
+        qString += querystring.toString() + " + ";
+        return qString;
+    }
 }

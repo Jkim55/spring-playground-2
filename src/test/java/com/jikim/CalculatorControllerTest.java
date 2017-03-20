@@ -74,4 +74,13 @@ public class CalculatorControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("30 + 5 = 35"));
     }
+
+    @Test
+    public void canSumMultipleDigits () throws Exception {
+        RequestBuilder sumRequest = MockMvcRequestBuilders.post("/math/sum?n=4&n=5&n=6");
+
+        this.mvc.perform(sumRequest)
+                .andExpect(status().isOk())
+                .andExpect(content().string("4 + 5 + 6 = 15"));
+    }
 }
