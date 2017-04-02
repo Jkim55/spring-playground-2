@@ -53,4 +53,10 @@ public class CalculatorController {
 
         return String.format("%s = %d", expression, evaluation);
     }
+
+    @RequestMapping("/volume/{length}/{width}/{height}")
+    public String calculateVolume(@PathVariable int length, @PathVariable int width, @PathVariable int height){
+        int sum = length * width * height;
+        return String.format("The volume of a %dx%dx%d rectangle is %d", length, width, height, sum);
+    }
 }

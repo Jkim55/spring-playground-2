@@ -21,7 +21,7 @@ public class PathVariableControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void getParamsTest() throws Exception {
+    public void getParams() throws Exception {
         String query = "bull-doggies";
         String from = "instagram";
         RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/example/%s/%s", query, from));
@@ -32,7 +32,7 @@ public class PathVariableControllerTest {
     }
 
     @Test
-    public void getIndividualParamsTest() throws Exception {
+    public void getIndividualParams() throws Exception {
         int taskID = 16792;
         int commentID = 18;
         RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/individual/tasks/%d/comment/%d", taskID , commentID));
@@ -43,7 +43,7 @@ public class PathVariableControllerTest {
     }
 
     @Test
-    public void getParamsAsMapTest() throws Exception {
+    public void getParamsAsMap() throws Exception {
         int taskID = 192;
         String commentID = "1";
         RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/map/tasks/%d/comment/%s", taskID , commentID));
@@ -54,7 +54,7 @@ public class PathVariableControllerTest {
     }
 
     @Test
-    public void getParamsAsObjectTest() throws Exception {
+    public void getParamsAsObject() throws Exception {
         int taskID = 167;
         int commentID = 8;
         RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/object/tasks/%d/comment/%d", taskID , commentID));
