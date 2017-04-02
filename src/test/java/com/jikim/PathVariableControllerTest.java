@@ -21,7 +21,7 @@ public class PathVariableControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void getIndividualParamsTest() throws Exception {
+    public void getParamsTest() throws Exception {
         String query = "bull-doggies";
         String from = "instagram";
         RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/example/%s/%s", query, from));
@@ -30,4 +30,39 @@ public class PathVariableControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("query term is bull-doggies from instagram"));
     }
+
+    @Test
+    public void getIndividualParamsTest() throws Exception {
+        int taskID = 16792;
+        int commentID = 18;
+        RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/individual/tasks/%d/comment/%d", taskID , commentID));
+
+        this.mvc.perform(getRequest)
+                .andExpect(status().isOk())
+                .andExpect(content().string("taskId is 16792; commentId is 18"));
+    }
+
+    @Test
+    public void getParamsAsMapTest() throws Exception {
+        int taskID = 192;
+        String commentID = "1";
+        RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/map/tasks/%d/comment/%s", taskID , commentID));
+
+        this.mvc.perform(getRequest)
+                .andExpect(status().isOk())
+                .andExpect(content().string("{tID=192, cID=1}"));
+    }
+
+    @Test
+    public void getParamsAsObjectTest() throws Exception {
+        int taskID = 167;
+        int commentID = 8;
+        RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/object/tasks/%d/comment/%d", taskID , commentID));
+
+        this.mvc.perform(getRequest)
+                .andExpect(status().isOk())
+                .andExpect(content().string("taskId is 167; commentId is 8"));
+    }
+
+
 }
