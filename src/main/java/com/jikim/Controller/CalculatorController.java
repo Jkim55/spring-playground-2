@@ -2,9 +2,12 @@ package com.jikim.Controller;
 
 import com.jikim.Service.CalculatorService;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/math")
@@ -47,9 +50,11 @@ public class CalculatorController {
     }
 
     @PostMapping("/sum")
-    public String findAsHashMap(@RequestParam MultiValueMap querystring){
-        String qString = "";
-        qString += querystring.toString() + " + ";
-        return qString;
+    public String evaluateSumforMoreThan2Digits(@RequestParam MultiValueMap<String, String> queryParamNums) {
+        List<String> nums = queryParamNums.get("n");
+        String expression = String.join(" + ", nums);
+        int evaluation = nums.stream().mapToInt(Integer::parseInt).sum();
+
+        return String.format("%s = %d", expression, evaluation);
     }
 }
