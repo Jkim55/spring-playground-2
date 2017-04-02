@@ -22,15 +22,12 @@ public class PathVariableControllerTest {
 
     @Test
     public void getIndividualParamsTest() throws Exception {
-//        String query = "bull-doggies";
-//        String from = "instagram";
-//        RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/individual-example/%d/%d", query, from));
+        String query = "bull-doggies";
+        String from = "instagram";
+        RequestBuilder getRequest = MockMvcRequestBuilders.get(String.format("/example/%s/%s", query, from));
 
-        RequestBuilder getRequest = MockMvcRequestBuilders.get("/individual-example/bull-doggies/instagram");
         this.mvc.perform(getRequest)
                 .andExpect(status().isOk())
                 .andExpect(content().string("query term is bull-doggies from instagram"));
-
     }
-
 }

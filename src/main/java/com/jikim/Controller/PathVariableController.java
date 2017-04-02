@@ -10,9 +10,9 @@ import java.util.Map;
 @RestController
 public class PathVariableController {
 
-    @GetMapping("/example/{query}") // pattern matches: "/individual-example/gluten-free-cupcakes/pinterest"
-    public String getIndividualParams(@PathVariable String query) {
-        return String.format("query term is %s", query);
+    @GetMapping("/example/{q}/{from}") // pattern matches: "/example/gluten-free-cupcakes/pinterest"
+    public String getIndividualParams(@PathVariable("q") String query, @PathVariable String from) {
+        return String.format("query term is %s from %s", query, from);
     }
 
     @GetMapping("/tasks/{tID}/comments/{cID}")
@@ -20,7 +20,7 @@ public class PathVariableController {
         return String.format("taskId is %d; commentId is %d", taskId, commentId);
     }
 
-    @GetMapping("/tasks/{tID}/comments/{cID}")
+    @GetMapping("/tasks/{tID}/comment/{cID}")
     public String getPathVariablesAsAMap(@PathVariable Map pathVariables) {
         return pathVariables.toString(); // {tID=46, cID=35}
     }
