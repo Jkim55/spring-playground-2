@@ -9,9 +9,10 @@ import java.util.Map;
 
 @RestController
 public class PathVariableController {
-    @GetMapping("/individual-example/{q}/{from}") // pattern matches: "/individual-example/query/from-fluid"
-    public String getIndividualParams(@PathVariable("q") String query, @PathVariable String from) {
-        return String.format("q is %s & from is %s", query, from);
+
+    @GetMapping("/example/{query}") // pattern matches: "/individual-example/gluten-free-cupcakes/pinterest"
+    public String getIndividualParams(@PathVariable String query) {
+        return String.format("query term is %s", query);
     }
 
     @GetMapping("/tasks/{tID}/comments/{cID}")

@@ -2,12 +2,9 @@ package com.jikim.Controller;
 
 import com.jikim.Service.CalculatorService;
 import org.springframework.util.MultiValueMap;
-import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/math")
