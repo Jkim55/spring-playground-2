@@ -5,8 +5,6 @@ import org.springframework.http.MediaType;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 @RestController
@@ -69,20 +67,19 @@ public class CalculatorController {
             @RequestParam(required = false) Integer width,
             @RequestParam(required = false) Integer height,
             @RequestParam(required = false) Integer radius) {
+        CalculatorService calculatorService = new CalculatorService();
         try {
             if (type.equals("circle")) {
-                double area = Math.PI * Math.pow(radius, 2);
-                BigDecimal bdArea = new BigDecimal(area).setScale(2, RoundingMode.DOWN);
-                return String.format("A circle with a radius of %d has an area of %s", radius, bdArea);
+                return calculatorService.areaOfCircle(radius);
             } else if (type.equals("rectangle")) {
-                int area = width * height;
-                return String.format("A rectangle with a dimension of %d x %d has an area of %d", width, height, area);
+                return calculatorService.areaOfRectangle(width, height);
             } else {
-                return "";
+                return "Not a valid type!";
             }
         }
         catch (Exception e) {
             return "invalid";
         }
     }
+
 }
