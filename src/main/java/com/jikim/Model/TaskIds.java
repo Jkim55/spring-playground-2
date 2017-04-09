@@ -1,4 +1,4 @@
-package com.jikim.Service;
+package com.jikim.Model;
 
 public class TaskIds {
     private int taskId;
