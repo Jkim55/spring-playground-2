@@ -1,6 +1,6 @@
-package com.jikim;
+package com.jikim.unit_3;
 
-import com.jikim.Controller.FormDataController;
+import com.jikim.unit_3.Controller.FormDataController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

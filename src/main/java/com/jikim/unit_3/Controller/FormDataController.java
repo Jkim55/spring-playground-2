@@ -1,6 +1,6 @@
-package com.jikim.Controller;
+package com.jikim.unit_3.Controller;
 
-import com.jikim.Model.Search;
+import com.jikim.unit_3.Model.Search;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

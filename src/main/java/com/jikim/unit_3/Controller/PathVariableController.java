@@ -1,6 +1,6 @@
-package com.jikim.Controller;
+package com.jikim.unit_3.Controller;
 
-import com.jikim.Model.TaskIds;
+import com.jikim.unit_3.Model.TaskIds;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

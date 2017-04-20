@@ -1,4 +1,4 @@
-package com.jikim.Model;
+package com.jikim.unit_3.Model;
 
 public class Search {
     private String style;

@@ -1,4 +1,4 @@
-package com.jikim.Service;
+package com.jikim.unit_3.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,6 +1,6 @@
-package com.jikim.Controller;
+package com.jikim.unit_3.Controller;
 
-import com.jikim.Service.CalculatorService;
+import com.jikim.unit_3.Service.CalculatorService;
 import org.springframework.http.MediaType;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/math")
 public class CalculatorController {
-    
+    CalculatorService calculatorService = new CalculatorService();
+
     @GetMapping("/pi")
     public String getPi () {
         return "3.141592653589793";
@@ -23,7 +24,6 @@ public class CalculatorController {
             @RequestParam int y){
         String operator = "";
         int evaluated = 0;
-        CalculatorService calculatorService = new CalculatorService();
 
         switch (operation) {
             case "add":
@@ -67,7 +67,6 @@ public class CalculatorController {
             @RequestParam(required = false) Integer width,
             @RequestParam(required = false) Integer height,
             @RequestParam(required = false) Integer radius) {
-        CalculatorService calculatorService = new CalculatorService();
         try {
             if (type.equals("circle")) {
                 return calculatorService.areaOfCircle(radius);

@@ -1,4 +1,4 @@
-package com.jikim.Controller;
+package com.jikim.unit_3.Controller;
 
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
