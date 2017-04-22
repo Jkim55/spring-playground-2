@@ -18,11 +18,21 @@ public class Passenger {
         this.lastName = lastName;
     }
 
+    @JsonProperty("FirstName")
     public String getFirstName() {
         return firstName;
     }
 
+    @JsonProperty("LastName")
     public String getLastName() {
         return lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

@@ -15,10 +15,12 @@ public class Ticket {
         this.price = price;
     }
 
+    @JsonProperty("Passenger")
     public Passenger getPassenger() {
         return passenger;
     }
 
+    @JsonProperty("Price")
     public Integer getPrice() {
         return price;
     }

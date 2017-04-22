@@ -25,7 +25,7 @@ public class FlightFinderTest {
 
     @Test
     public void fetchSingleFlight() throws Exception {
-        String flightResponse = getFixture("/flightResponse.json");
+        String flightResponse = getJson("/flightResponse.json");
 
         MockHttpServletRequestBuilder request = get("/flights/flight");
 
@@ -36,7 +36,7 @@ public class FlightFinderTest {
 
     @Test
     public void fetchMultipleFlights() throws Exception {
-        String flightsResponse = getFixture("/flightsResponse.json");
+        String flightsResponse = getJson("/flightsResponse.json");
 
         MockHttpServletRequestBuilder request = get("/flights");
 
@@ -45,7 +45,7 @@ public class FlightFinderTest {
                 .andExpect(content().json(flightsResponse));
     }
 
-    private String getFixture(String path) throws Exception {  //should I extract this as a helper class?
+    private String getJson(String path) throws Exception {
         URL url = this.getClass().getResource(path);
         return new String(Files.readAllBytes(Paths.get(url.toURI())));
     }

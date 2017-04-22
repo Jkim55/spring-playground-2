@@ -10,13 +10,12 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Flight {
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm", timezone = "US/Mountain")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
     private Date departs;
     private List<Ticket> tickets;
 
     @JsonCreator
     public Flight(
-            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm", timezone = "US/Mountain")
             @JsonProperty("Departs") Date departs,
             @JsonProperty("Tickets") List<Ticket> tickets) {
         this.departs = departs;
@@ -24,11 +23,13 @@ public class Flight {
         System.out.println("**********This is Flight.departs" + this.departs);
     }
 
+    @JsonProperty("Departs")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
     public Date getDeparts() {
         return departs;
     }
 
+    @JsonProperty("Tickets")
     public List<Ticket> getTickets() {
         return tickets;
     }

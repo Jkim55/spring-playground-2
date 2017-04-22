@@ -26,7 +26,7 @@ public class CustomNestedJsonTest {
 
     @Test
     public void fetchDetailsOnSingleTrip() throws Exception {
-        String tripResponse = getFixture("/CustomNestedResponse.json");
+        String tripResponse = getJson("/CustomNestedResponse.json");
 
         MockHttpServletRequestBuilder request = get("/trips/trip");
 
@@ -35,7 +35,7 @@ public class CustomNestedJsonTest {
                 .andExpect(content().json(tripResponse));
     }
 
-    private String getFixture(String path) throws Exception {
+    private String getJson(String path) throws Exception {
         URL url = this.getClass().getResource(path);
         return new String(Files.readAllBytes(Paths.get(url.toURI())));
     }
