@@ -1,0 +1,16 @@
+{
+  "id": 10,
+  "destination": "London",
+  "departsOn": "2017-04-06",
+  "passengers": [
+    {
+      "name": "Eliza"
+    },
+    {
+      "name": "Samuel"
+    }
+  ],
+  "conductor": {
+    "name": "Angelica"
+  }
+}
