@@ -21,13 +21,13 @@ public class CalculatorService {
         return num1 / num2;
     }
 
-    public String areaOfCircle (int radius) {
+    public String areaOfCircle(int radius) {
         double area = Math.PI * Math.pow(radius, 2);
         BigDecimal bdArea = new BigDecimal(area).setScale(2, RoundingMode.DOWN);
         return String.format("A circle with a radius of %d has an area of %s", radius, bdArea);
     }
 
-    public String areaOfRectangle (int width, int height) {
+    public String areaOfRectangle(int width, int height) {
         int area = width * height;
         return String.format("A rectangle with a dimension of %d x %d has an area of %d", width, height, area);
     }

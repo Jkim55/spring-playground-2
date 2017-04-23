@@ -41,6 +41,7 @@ public class FlightFinderControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(flightResponse));
     }
+    // TODO: Figure out timezone offset business when Flight objects are instantiated
 
     @Test
     public void fetchMultipleFlights() throws Exception {
@@ -52,7 +53,6 @@ public class FlightFinderControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(flightsResponse));
     }
-    // TODO: Figure out timezone offset business when Flight objects are instantiated
 
     @Test
     public void calculateTicketSalesOnSingleFlight_WithStringLiteral() throws Exception{
@@ -68,8 +68,6 @@ public class FlightFinderControllerTest {
                 .andExpect(content().json(responseJson));
     }
 
-    // TODO: Change response on salesResponse to: {"result": 350}
-    // TODO: Implementation on service re logic to pull date from ticket.price & calculate it
     // TODO: Implementation for last two tests
 
     @Test
