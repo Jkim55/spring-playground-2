@@ -10,7 +10,6 @@ public class Passenger {
     private String lastName;
 
     @JsonCreator
-
     public Passenger(
             @JsonProperty("FirstName") String firstName ,
             @JsonProperty("LastName") String lastName) {
@@ -30,7 +29,7 @@ public class Passenger {
 
     @Override
     public String toString() {
-        return "{" +
+        return "Passenger: {" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';

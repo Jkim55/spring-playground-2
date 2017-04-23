@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.jikim.unit_4.Controller.JSONRequestController;
+import com.jikim.unit_4.Model.Person;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,16 @@ public class JSONRequestControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    private String getJson(String path) throws Exception {
+        URL url = this.getClass().getResource(path);
+        return new String(Files.readAllBytes(Paths.get(url.getFile())));
+    }
+
     @Test
-    public void itTakesObjectParams() throws Exception {
+    public void postWithGsonBuilderObjectRequestBody() throws Exception {
         JsonObject person = new JsonObject();
-        person.addProperty("firstName", "Ji");
-        person.addProperty("lastName", "Kim");
+        person.addProperty("FirstName", "Ji");
+        person.addProperty("LastName", "Kim");
 
         Gson builder = new GsonBuilder().create();
 
@@ -44,13 +50,27 @@ public class JSONRequestControllerTest {
 
         this.mvc.perform(postRequest)
                 .andExpect(status().isOk())
-                .andExpect(content().string("{firstName='Ji', lastName='Kim'}"));
+                .andExpect(content().string("Passenger: {firstName='Ji', lastName='Kim'}"));
     }
 
+    @Test
+    public void postWithGsonSerializedObjectRequestBody() throws Exception {
+        Person impersonator = new Person("Not Ji");
+
+        Gson gson = new GsonBuilder().create();
+
+        MockHttpServletRequestBuilder postRequest = post("/request/string")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(gson.toJson(impersonator));
+
+        this.mvc.perform(postRequest)
+                .andExpect(status().isOk())
+                .andExpect(content().string("{name='Not Ji'}"));
+    }
 
     @Test
-    public void testRawBody() throws Exception {
-        String json = getJSON("/data.json");
+    public void postWithRawBodyRequestBody() throws Exception {
+        String json = getJson("/jsonRequest.json");
 
         MockHttpServletRequestBuilder request = post("/request/string")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -58,12 +78,20 @@ public class JSONRequestControllerTest {
 
         this.mvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().string(json));
+                .andExpect(content().string("{name='Ji Kim'}"));
     }
 
-    private String getJSON(String path) throws Exception {
-        URL url = this.getClass().getResource(path);
-        return new String(Files.readAllBytes(Paths.get(url.getFile())));
+    @Test
+    public void postWithNestedRawBodyRequestBody() throws Exception {
+        String requestJson = getJson("/jsonNestedRequest.json");
+
+        MockHttpServletRequestBuilder request = post("/request/nestedStringData")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson);
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string("{\"name\":\"Jules\",\"items\":[{\"drink\":\"Cortado\",\"price\":\"2.75\"},{\"drink\":\"Lemongrass Tea\",\"size\":\"large\",\"price\":\"3.85\"}],\"fulfilled\":true}"));
     }
 
 }

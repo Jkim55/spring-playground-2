@@ -24,4 +24,12 @@ public class Ticket {
     public Integer getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "Passenger=" + passenger +
+                ", Price=" + price +
+                '}';
+    }
 }

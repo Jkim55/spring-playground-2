@@ -1,24 +1,24 @@
 [
   {
-    "departs": "2017-04-21 8:34",
-    "tickets": [
+    "Departs": "2017-04-21 08:34",
+    "Tickets": [
       {
-        "passenger": {
-          "firstName": "Roland",
-          "lastName": "Bertrand"
+        "Passenger": {
+          "FirstName": "Roland",
+          "LastName": "Bertrand"
         },
-        "price": 200
+        "Price": 200
       }
     ]
   },
   {
-    "departs": "2017-04-21 8:34",
-    "tickets": [
+    "Departs": "2017-04-21 08:34",
+    "Tickets": [
       {
-        "passenger": {
-          "firstName": "Vanessa",
+        "Passenger": {
+          "FirstName": "Vanessa"
         },
-        "price": 400
+        "Price": 400
       }
     ]
   }

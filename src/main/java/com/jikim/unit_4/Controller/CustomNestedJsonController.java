@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/trips")
-public class CustomNestedJson {
+public class CustomNestedJsonController {
 
     @GetMapping("/trip")
     public Trip getSingleTripData() throws ParseException {

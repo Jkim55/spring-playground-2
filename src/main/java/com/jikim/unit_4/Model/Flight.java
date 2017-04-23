@@ -18,9 +18,8 @@ public class Flight {
     public Flight(
             @JsonProperty("Departs") Date departs,
             @JsonProperty("Tickets") List<Ticket> tickets) {
-        this.departs = departs;
+        this.departs = (departs != null) ? departs : null;
         this.tickets = tickets;
-        System.out.println("**********This is Flight.departs" + this.departs);
     }
 
     @JsonProperty("Departs")

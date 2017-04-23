@@ -1,6 +1,6 @@
 package com.jikim.unit_4;
 
-import com.jikim.unit_4.Controller.CustomNestedJson;
+import com.jikim.unit_4.Controller.CustomNestedJsonController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +18,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CustomNestedJson.class)
-public class CustomNestedJsonTest {
+@WebMvcTest(CustomNestedJsonController.class)
+public class CustomNestedJsonControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
     public void fetchDetailsOnSingleTrip() throws Exception {
-        String tripResponse = getJson("/CustomNestedResponse.json");
+        String tripResponse = getJson("/customNestedResponse.json");
 
         MockHttpServletRequestBuilder request = get("/trips/trip");
 

@@ -2,14 +2,10 @@ package com.jikim.unit_4.Controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.jikim.unit_4.Model.Flight;
 import com.jikim.unit_4.Model.Passenger;
 import com.jikim.unit_4.Model.Ticket;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,10 +15,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/flights")
-public class FlightFinder {
+public class FlightFinderController {
 
     @GetMapping
-    @JsonDeserialize(using = LocalDateDeserializer.class)
     public List<Flight> getFlights() throws ParseException {
         Date departureDate = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2017-04-21 14:34");
         Passenger passenger1 = new Passenger("Roland", "Bertrand");
@@ -38,7 +33,6 @@ public class FlightFinder {
     }
 
     @GetMapping("/flight")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
     public Flight getFlight() throws JsonProcessingException, ParseException {
         Date departureDate = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2017-04-21 14:34");
 
@@ -46,10 +40,17 @@ public class FlightFinder {
 
         List<Ticket> tickets = Arrays.asList(new Ticket(new Passenger("Roland", "Bertrand"), 200));
         Flight flight1 = new Flight(departureDate, tickets);
+
         String result = new ObjectMapper().writeValueAsString(flight1);
         System.out.println("**********This is flight 1" + result);
 
         return flight1;
+    }
+
+    @PostMapping("/tickets/total")
+    public String getSalesTotalForFlight(@RequestBody Flight flight) throws Exception {
+        System.out.println("*******" + new ObjectMapper().writeValueAsString(flight));
+        return new ObjectMapper().writeValueAsString(flight);
     }
 
 }

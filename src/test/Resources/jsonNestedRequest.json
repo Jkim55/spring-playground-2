@@ -1,0 +1,15 @@
+{
+  "name": "Jules",
+  "fulfilled": true,
+  "items": [
+    {
+      "drink": "Cortado",
+      "price": "2.75"
+    },
+    {
+      "drink": "Lemongrass Tea",
+      "size": "large",
+      "price": "3.85"
+    }
+  ]
+}
