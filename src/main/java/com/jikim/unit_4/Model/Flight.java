@@ -16,19 +16,19 @@ public class Flight {
 
     @JsonCreator
     public Flight(
-            @JsonProperty("Departs") Date departs,
-            @JsonProperty("Tickets") List<Ticket> tickets) {
+            @JsonProperty("departs") Date departs,
+            @JsonProperty("tickets") List<Ticket> tickets) {
         this.departs = (departs != null) ? departs : null;
         this.tickets = tickets;
     }
 
-    @JsonProperty("Departs")
+    @JsonProperty("departs")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm")
     public Date getDeparts() {
         return departs;
     }
 
-    @JsonProperty("Tickets")
+    @JsonProperty("tickets")
     public List<Ticket> getTickets() {
         return tickets;
     }

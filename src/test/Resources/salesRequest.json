@@ -1,20 +1,19 @@
-{
-  "Tickets": [
+{"departs": null,
+  "tickets": [
     {
-      "Passenger": {
-        "FirstName": "Some name",
-        "LastName": "Some other name"
+      "passenger": {
+        "firstName": "Some name",
+        "lastName": "Some other name"
       },
-      "Price": 200
+      "price": 200
     },
     {
-      "Passenger": {
-        "FirstName": "Name B",
-        "LastName": "Name C"
+      "passenger": {
+        "firstName": "Name B",
+        "lastName": "Name C"
       },
-      "Price": 150
+      "price": 150
     }
   ]
-}
-
+},
 

@@ -9,18 +9,18 @@ public class Ticket {
 
     @JsonCreator
     public Ticket(
-            @JsonProperty("Passenger") Passenger passenger,
-            @JsonProperty("Price") Integer price) {
+            @JsonProperty("passenger") Passenger passenger,
+            @JsonProperty("price") Integer price) {
         this.passenger = passenger;
         this.price = price;
     }
 
-    @JsonProperty("Passenger")
+    @JsonProperty("passenger")
     public Passenger getPassenger() {
         return passenger;
     }
 
-    @JsonProperty("Price")
+    @JsonProperty("price")
     public Integer getPrice() {
         return price;
     }

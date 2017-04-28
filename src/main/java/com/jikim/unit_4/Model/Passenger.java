@@ -11,18 +11,18 @@ public class Passenger {
 
     @JsonCreator
     public Passenger(
-            @JsonProperty("FirstName") String firstName ,
-            @JsonProperty("LastName") String lastName) {
+            @JsonProperty("firstName") String firstName ,
+            @JsonProperty("lastName") String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    @JsonProperty("FirstName")
+    @JsonProperty("firstName")
     public String getFirstName() {
         return firstName;
     }
 
-    @JsonProperty("LastName")
+    @JsonProperty("lastName")
     public String getLastName() {
         return lastName;
     }
