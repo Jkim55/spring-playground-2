@@ -31,6 +31,15 @@ public class LessonsController {
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/find-by-title/{title}")
+    public ResponseEntity readByTitle(@PathVariable("title") String title) {
+        if (this.repository.findByTitle(title) != null) {
+            Lesson found = this.repository.findByTitle(title);
+            return new ResponseEntity(found, HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
     @PatchMapping("/{id}")
     public ResponseEntity update(@PathVariable("id") Long id, @RequestBody Lesson lesson){
         if (this.repository.findOne(id) != null) {

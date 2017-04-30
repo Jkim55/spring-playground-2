@@ -121,4 +121,22 @@ public class LessonsControllerTest {
                 .andExpect(jsonPath("$[1].title", equalTo(lesson2.getTitle())));
     }
 
+    @Test
+    @Transactional
+    @Rollback
+    public void itCanFindAnEntryByTitle() throws Exception {
+        Lesson lesson = new Lesson();
+        lesson.setTitle("Spring Showers");
+        repository.save(lesson);
+        String lessonTitle = lesson.getTitle();;
+
+        MockHttpServletRequestBuilder request = get("/lessons/find-by-title/" + lessonTitle)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", equalTo(lesson.getId().intValue())))
+                .andExpect(jsonPath("$.title", equalTo("Spring Showers")));
+    }
+
 }
