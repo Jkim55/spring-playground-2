@@ -5,7 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/lessons")
@@ -23,21 +28,28 @@ public class LessonsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity read(@PathVariable("id") Long id) {
+    public ResponseEntity readById(@PathVariable("id") Long id) {
         if (this.repository.findOne(id) != null) {
-            Lesson found = this.repository.findOne(id);
-            return new ResponseEntity(found, HttpStatus.OK);
+            Lesson lesson = this.repository.findOne(id);
+            return new ResponseEntity(lesson, HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/find-by-title/{title}")
+    @GetMapping("/find/{title}")
     public ResponseEntity readByTitle(@PathVariable("title") String title) {
         if (this.repository.findByTitle(title) != null) {
-            Lesson found = this.repository.findByTitle(title);
-            return new ResponseEntity(found, HttpStatus.OK);
+            List<Lesson> lesson = this.repository.findByTitle(title);
+            return new ResponseEntity(lesson, HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/between")
+    public ResponseEntity readByDateRange(@RequestParam String date1, @RequestParam String date2) throws ParseException{
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        List<Lesson> lessons = this.repository.findLessonBetweenDates(df.parse(date1), df.parse(date2));
+        return new ResponseEntity(lessons, HttpStatus.OK);
     }
 
     @PatchMapping("/{id}")
@@ -45,6 +57,7 @@ public class LessonsController {
         if (this.repository.findOne(id) != null) {
             Lesson lessonToEdit = this.repository.findOne(id);
             lessonToEdit.setTitle(lesson.getTitle());
+            lessonToEdit.setDeliveredOn(lesson.getDeliveredOn());
             this.repository.save(lessonToEdit);
             return new ResponseEntity(lessonToEdit, HttpStatus.OK);
         }
