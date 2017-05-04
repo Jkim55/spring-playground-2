@@ -22,7 +22,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -32,8 +31,7 @@ public class LessonsControllerTest {
     private MockMvc mvc;
 
     @Autowired
-    LessonRepository repository;
-
+    private LessonRepository repository;
 
     @Test
     @Transactional
@@ -42,6 +40,7 @@ public class LessonsControllerTest {
         MockHttpServletRequestBuilder request = post("/lessons")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"title\": \"Spring Boot\"}");
+
         this.mvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", instanceOf(Number.class)))

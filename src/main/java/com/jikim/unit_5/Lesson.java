@@ -6,14 +6,19 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "lessons")
 public class Lesson {
 
+    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column
     private String title;
-    @Column
+
+    @Column(columnDefinition = "date")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date deliveredOn;
 
     public Long getId() {
@@ -32,13 +37,12 @@ public class Lesson {
         this.title = title;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     public Date getDeliveredOn() {
         return deliveredOn;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     public void setDeliveredOn(Date deliveredOn) {
         this.deliveredOn = deliveredOn;
     }
+
 }
