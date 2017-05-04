@@ -19,7 +19,7 @@ public class LessonsController {
         this.repository = repository;
     }
 
-    @PostMapping("")
+    @PostMapping
     public Lesson create(@RequestBody Lesson lesson) {
         return this.repository.save(lesson);
     }
@@ -70,8 +70,8 @@ public class LessonsController {
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("")
-    public Iterable<Lesson> all() {
+    @GetMapping
+    public Iterable<Lesson> listAll() {
         return this.repository.findAll();
     }
 
