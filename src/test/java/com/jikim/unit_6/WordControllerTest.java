@@ -52,11 +52,9 @@ public class WordControllerTest {
                 .contentType(MediaType.TEXT_PLAIN)
                 .content("Marcel the Shell is a shell");
 
-
-
         this.mvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().json(""));
+                .andExpect(content().json("{\"marcel\":1,\"the\":1,\"a\":1,\"shell\":2,\"is\":1}"));
     }
 
 }
