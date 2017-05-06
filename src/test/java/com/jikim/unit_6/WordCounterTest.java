@@ -22,15 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class WordCounterTest {
 
     @Autowired
-    private MockMvc mvc;
-
-    @Autowired
     WordCounter wordCounter;
-
-    @Test
-    public void testShouldWork() {
-        assertThat(wordCounter.getWordCounter(), instanceOf(WordCounter.class));
-    }
 
     @Test
     public void itCountsWords_ReturnsATally(){

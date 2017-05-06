@@ -14,6 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -32,7 +35,15 @@ public class WordControllerTest {
 
     @Before
     public void setup() {
-        when(wordCounter.getWordCounter()).thenReturn(new WordCounter());
+        String sentence = "Blue cows blue bell";
+        Map<String, Integer> testCount = wordCounter.count(sentence);
+        Map<String, Integer> mockCount = new HashMap<>();
+        mockCount.put("marcel", 1);
+        mockCount.put("the", 1);
+        mockCount.put("shell", 2);
+        mockCount.put("is", 1);
+        mockCount.put("a", 1);
+        when(wordCounter.count("Marcel the Shell is a shell")).thenReturn(mockCount);
     }
 
     @Test
@@ -41,18 +52,11 @@ public class WordControllerTest {
                 .contentType(MediaType.TEXT_PLAIN)
                 .content("Marcel the Shell is a shell");
 
-//        JsonObject mockTally = new JsonObject();
-//        mockTally.addProperty("marcel", "1");
-//        mockTally.addProperty("the", "1");
-//        mockTally.addProperty("shell", "2");
-//        mockTally.addProperty("is", "1");
-//        mockTally.addProperty("a", "1");
-//        Gson builder = new GsonBuilder().create();
-//        String tallyString = builder.toJson(mockTally);
+
 
         this.mvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().json("{}"));
+                .andExpect(content().json(""));
     }
 
 }
