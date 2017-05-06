@@ -1,5 +1,8 @@
 package com.jikim.unit_6;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,18 +32,27 @@ public class WordControllerTest {
 
     @Before
     public void setup() {
-        when(wordCounter.getWordCounter()).thenReturn(any());
+        when(wordCounter.getWordCounter()).thenReturn(new WordCounter());
     }
 
     @Test
-    public void itCanCreateATally() throws Exception {
+    public void itPostsAString_ReturnsATally() throws Exception {
         MockHttpServletRequestBuilder request = post("/words/count")
                 .contentType(MediaType.TEXT_PLAIN)
                 .content("Marcel the Shell is a shell");
 
+//        JsonObject mockTally = new JsonObject();
+//        mockTally.addProperty("marcel", "1");
+//        mockTally.addProperty("the", "1");
+//        mockTally.addProperty("shell", "2");
+//        mockTally.addProperty("is", "1");
+//        mockTally.addProperty("a", "1");
+//        Gson builder = new GsonBuilder().create();
+//        String tallyString = builder.toJson(mockTally);
+
         this.mvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"marcel\":1,\"the\":1,\"a\":1,\"shell\":2,\"is\":1}"));
+                .andExpect(content().json("{}"));
     }
 
 }
