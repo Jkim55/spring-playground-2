@@ -31,8 +31,6 @@ public class WordControllerTest {
 
     @Before
     public void setup() {
-        String sentence = "Blue cows blue bell";
-        Map<String, Integer> testCount = wordCounter.count(sentence);
         Map<String, Integer> mockCount = new HashMap<>();
         mockCount.put("marcel", 1);
         mockCount.put("the", 1);
