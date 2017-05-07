@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@ConfigurationProperties("wordCounter")
+@ConfigurationProperties("wordCounterService")
 public class WordConfig {
     private Boolean caseSensitive;
     private Words words;

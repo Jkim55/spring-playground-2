@@ -15,10 +15,10 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(properties = {
-        "wordCounter.caseSensitive=false",
-        "wordCounter.words.skip[0]=the",
-        "wordCounter.words.skip[1]=an",
-        "wordCounter.words.skip[2]=a"
+        "wordCounterService.caseSensitive=false",
+        "wordCounterService.words.skip[0]=the",
+        "wordCounterService.words.skip[1]=an",
+        "wordCounterService.words.skip[2]=a"
 })
 public class WordConfigTest {
     @Autowired

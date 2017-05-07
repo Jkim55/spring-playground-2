@@ -11,15 +11,15 @@ import java.util.Map;
 @RequestMapping("/words")
 public class WordController {
 
-    private WordCounter wordCounter;
+    private WordCounterService wordCounterService;
 
-    public WordController(WordCounter wordCounter) {
-        this.wordCounter = wordCounter;
+    public WordController(WordCounterService wordCounterService) {
+        this.wordCounterService = wordCounterService;
     }
 
     @PostMapping("/count")
     public Map<String, Integer> getWordCount(@RequestBody String sentence) {
-        return wordCounter.count(sentence);
+        return wordCounterService.count(sentence);
     }
 
 }

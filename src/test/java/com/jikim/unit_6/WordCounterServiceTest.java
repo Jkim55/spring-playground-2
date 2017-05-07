@@ -15,15 +15,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class WordCounterTest {
+public class WordCounterServiceTest {
 
     @Autowired
-    WordCounter wordCounter;
+    WordCounterService wordCounterService;
 
     @Test
     public void itCountsWords_ReturnsATally(){
         String sentence = "Blue cows blue bell";
-        Map<String, Integer> testCount = wordCounter.count(sentence);
+        Map<String, Integer> testCount = wordCounterService.count(sentence);
         Map<String, Integer> mockCount = new HashMap<>();
         mockCount.put("blue", 2);
         mockCount.put("bell", 1);
@@ -35,7 +35,7 @@ public class WordCounterTest {
     @Test
     public void itUsesConfigClassToCountWords_ReturnsAFilteredTally(){
         String sentence = "The BROWN cow jumps over a brown fox";
-        Map<String, Integer> testCount = wordCounter.count(sentence);
+        Map<String, Integer> testCount = wordCounterService.count(sentence);
         Map<String, Integer> mockCount = new HashMap<>();
         mockCount.put("brown", 2);
         mockCount.put("cow", 1);

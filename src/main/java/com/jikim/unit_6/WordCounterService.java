@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 @Service
-public class WordCounter {
+public class WordCounterService {
     private final WordConfig wordConfig;
 
-    public WordCounter(WordConfig wordConfig) {
+    public WordCounterService(WordConfig wordConfig) {
         this.wordConfig = wordConfig;
     }
 

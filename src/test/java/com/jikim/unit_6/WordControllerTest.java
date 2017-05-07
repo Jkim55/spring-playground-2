@@ -27,7 +27,7 @@ public class WordControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    WordCounter wordCounter;
+    WordCounterService wordCounterService;
 
     @Before
     public void setup() {
@@ -37,7 +37,7 @@ public class WordControllerTest {
         mockCount.put("shell", 2);
         mockCount.put("is", 1);
         mockCount.put("a", 1);
-        when(wordCounter.count("Marcel the Shell is a shell")).thenReturn(mockCount);
+        when(wordCounterService.count("Marcel the Shell is a shell")).thenReturn(mockCount);
     }
 
     @Test
