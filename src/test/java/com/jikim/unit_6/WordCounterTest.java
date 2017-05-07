@@ -3,21 +3,17 @@ package com.jikim.unit_6;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
 @SpringBootTest
-@AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
 public class WordCounterTest {
 
@@ -35,4 +31,19 @@ public class WordCounterTest {
 
         assertThat(testCount, equalTo(mockCount));
     }
+
+    @Test
+    public void itUsesConfigClassToCountWords_ReturnsAFilteredTally(){
+        String sentence = "The BROWN cow jumps over a brown fox";
+        Map<String, Integer> testCount = wordCounter.count(sentence);
+        Map<String, Integer> mockCount = new HashMap<>();
+        mockCount.put("brown", 2);
+        mockCount.put("cow", 1);
+        mockCount.put("jumps", 1);
+        mockCount.put("over", 1);
+        mockCount.put("fox", 1);
+
+        assertThat(testCount, equalTo(mockCount));
+    }
+
 }

@@ -30,4 +30,6 @@ dependencies {
 	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.1")
 	compile('com.google.code.gson:gson:2.8.0')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile("org.springframework.boot:spring-boot-devtools")
+	compile('org.springframework.boot:spring-boot-starter-actuator')
 }

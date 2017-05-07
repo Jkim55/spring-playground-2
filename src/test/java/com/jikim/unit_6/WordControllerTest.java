@@ -1,8 +1,5 @@
 package com.jikim.unit_6;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +14,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

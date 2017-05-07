@@ -2,23 +2,28 @@ package com.jikim.unit_6;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-@Configuration
+@Service
 public class WordCounter {
+    private final WordConfig wordConfig;
 
-    @Bean
-    public WordCounter getWordCounter() {
-        return new WordCounter();
+    public WordCounter(WordConfig wordConfig) {
+        this.wordConfig = wordConfig;
     }
 
     public Map<String, Integer> count(String sentence) {
         Map<String, Integer> wordTally = new HashMap<>();
 
-        Stream.of(sentence.toLowerCase().split(" "))
+        String[] wordArray = wordConfig.getCaseSensitive() ? sentence.split(" ") : sentence.toLowerCase().split(" ");
+
+        Stream.of(wordArray)
+                .filter(word ->!wordConfig.getWords().getSkip().contains(word))
                 .filter(word -> {
                     if(wordTally.containsKey(word)) {
                         wordTally.put(word, wordTally.get(word) + 1);
