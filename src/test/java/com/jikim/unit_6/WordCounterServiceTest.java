@@ -24,6 +24,7 @@ public class WordCounterServiceTest {
     public void itCountsWords_ReturnsATally(){
         String sentence = "Blue cows blue bell";
         Map<String, Integer> testCount = wordCounterService.count(sentence);
+
         Map<String, Integer> mockCount = new HashMap<>();
         mockCount.put("blue", 2);
         mockCount.put("bell", 1);
